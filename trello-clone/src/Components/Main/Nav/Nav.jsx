@@ -2,7 +2,7 @@ import React from "react";
 import { Box, InputBase } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     nav: {
         backgroundColor: "#4bbf6b",
     },
@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "18px",
         fontWeight: "700",
         color: "white",
-        borderRadius: "3px",
         lineHeight: "32px",
+        borderRadius: "3px",
         padding: "0 6px",
         "&:hover": {
             backgroundColor: "hsla(0,0%,100%,.32)",
@@ -21,10 +21,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Nav = () => {
     const styles = useStyles();
+
     return (
         <>
             <Box className={styles.nav} color="white" p={2} pl={3}>
-                <form noValidate autoComplete="off">
+                <form autoComplete="off" noValidate>
                     <InputBase
                         className={styles.input}
                         placeholder="Task Title"

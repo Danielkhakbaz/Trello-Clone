@@ -1,7 +1,7 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
+import { Menu } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles((theme) => ({
     navbar: {
@@ -14,17 +14,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
     const styles = useStyles();
+
     return (
         <>
             <AppBar className={styles.navbar} position="static">
                 <Toolbar variant="dense">
                     <IconButton
-                        edge="start"
                         className={styles.menuButton}
                         color="inherit"
-                        aria-label="menu"
+                        edge="start"
                     >
-                        <MenuIcon />
+                        <Menu />
                     </IconButton>
                     <Typography variant="body1">Trello Clone</Typography>
                 </Toolbar>
