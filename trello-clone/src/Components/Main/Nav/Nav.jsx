@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const Nav = () => {
+const Nav = ({ inputValue, onChangeInput }) => {
     const styles = useStyles();
 
     return (
@@ -28,7 +28,9 @@ const Nav = () => {
                 <form autoComplete="off" noValidate>
                     <InputBase
                         className={styles.input}
+                        value={inputValue}
                         placeholder="Task Title"
+                        onChange={(e) => onChangeInput(e.currentTarget.value)}
                     />
                 </form>
             </Box>
