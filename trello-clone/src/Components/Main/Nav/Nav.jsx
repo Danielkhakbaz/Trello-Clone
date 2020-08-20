@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, InputBase } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(() => ({
     nav: {
@@ -22,6 +23,12 @@ const useStyles = makeStyles(() => ({
 const Nav = ({ inputValue, onChangeInput }) => {
     const styles = useStyles();
 
+    const controlEnterKey = (e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+        }
+    };
+
     return (
         <>
             <Box className={styles.nav} color="white" p={2} pl={3}>
@@ -31,11 +38,17 @@ const Nav = ({ inputValue, onChangeInput }) => {
                         value={inputValue}
                         placeholder="Task Title"
                         onChange={(e) => onChangeInput(e.currentTarget.value)}
+                        onKeyDown={controlEnterKey}
                     />
                 </form>
             </Box>
         </>
     );
+};
+
+Nav.propTypes = {
+    inputValue: PropTypes.string.isRequired,
+    onChangeInput: PropTypes.func.isRequired,
 };
 
 export default Nav;
