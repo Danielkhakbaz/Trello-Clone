@@ -5,12 +5,6 @@ import Main from "./Components/Main/Main/Main";
 import { connect } from "react-redux";
 
 const App = () => {
-    const [lists, setLists] = useState([
-        {
-            id: 0,
-            title: "First List",
-        },
-    ]);
     const [cards, setCards] = useState([
         {
             id: 0,
@@ -21,6 +15,13 @@ const App = () => {
             title: "Second Card",
         },
     ]);
+    const [lists, setLists] = useState([
+        {
+            id: 0,
+            title: "First List",
+            cards: cards,
+        },
+    ]);
     const [inputValue, setInputValue] = useState("");
     const [open, setOpen] = useState(false);
 
@@ -28,7 +29,7 @@ const App = () => {
         setInputValue(currentTargetValue);
     };
 
-    const handleAddCard = (value, id) => {
+    const handleAddCard = (value) => {
         const newItem = {
             id: cards.length,
             title: value,
@@ -48,6 +49,25 @@ const App = () => {
         setValue(e);
     };
 
+    const [baz, setBaz] = useState(false);
+
+    const handleAddList = (value) => {
+        const newList = {
+            id: lists.length,
+            title: value,
+            cards: [],
+        };
+        const allLists = lists;
+        allLists.push(newList);
+        setLists(allLists);
+        console.log(lists);
+        setInpValueList("");
+    };
+    const [inpValueList, setInpValueList] = useState("");
+    const handleChange1 = (e) => {
+        setInpValueList(e);
+    };
+
     return (
         <>
             <Navbar />
@@ -61,6 +81,11 @@ const App = () => {
                 onDeleteList={handleDeleteList}
                 inpValue={value}
                 setInpValue={handleChange}
+                baz={baz}
+                setBaz={setBaz}
+                onAddList={handleAddList}
+                inpValueList={inpValueList}
+                setInpValueList={handleChange1}
             />
         </>
     );
