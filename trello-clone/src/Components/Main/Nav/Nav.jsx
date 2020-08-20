@@ -36,7 +36,7 @@ const Nav = ({ inputValue, onChangeInput }) => {
                     <InputBase
                         className={styles.input}
                         value={inputValue}
-                        placeholder="Task Title"
+                        placeholder="Type Task's Title here"
                         onChange={(e) => onChangeInput(e.currentTarget.value)}
                         onKeyDown={controlEnterKey}
                     />
