@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Cards from "../Cards/Cards";
 import CardContainer from "./../CardContainer/CardContainer";
-import { Paper, Box, InputBase } from "@material-ui/core";
+import { Paper, Box, InputBase, IconButton } from "@material-ui/core";
+import ClearIcon from "@material-ui/icons/Clear";
 import { makeStyles } from "@material-ui/core/styles";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -42,7 +42,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Lists = ({ list, cards }) => {
+const Lists = ({
+    list,
+    cards,
+    onAddList,
+    open,
+    setOpen,
+    onDeleteList,
+    inpValue,
+    setInpValue,
+}) => {
     const [titleListValue, settitleListValue] = useState(list.title);
     const styles = useStyles();
     const controlEnterKey = (e) => {
@@ -67,14 +76,26 @@ const Lists = ({ list, cards }) => {
                             onKeyDown={controlEnterKey}
                         />
                     </form>
-                    <MoreHorizIcon className={styles.moreIcon} />
+                    <IconButton
+                        className={styles.moreIcon}
+                        onClick={() => onDeleteList(list.id)}
+                    >
+                        <ClearIcon />
+                    </IconButton>
                 </Box>
                 {cards.map((card) => (
-                    <div className={styles.class}>
+                    <div className={styles.class} key={card.id}>
                         <Cards cards={card} />
                     </div>
                 ))}
-                <CardContainer />
+                <CardContainer
+                    list={list}
+                    onAddList={onAddList}
+                    open={open}
+                    setOpen={setOpen}
+                    inpValue={inpValue}
+                    setInpValue={setInpValue}
+                />
             </Paper>
         </>
     );

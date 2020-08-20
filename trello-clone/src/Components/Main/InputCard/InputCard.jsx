@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Paper, InputBase, Button, IconButton } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import { makeStyles, fade } from "@material-ui/core/styles";
@@ -20,7 +20,7 @@ const useStyle = makeStyles((theme) => ({
     },
 }));
 
-const InputCard = ({ setOpen }) => {
+const InputCard = ({ list, setOpen, onAddList, inpValue, setInpValue }) => {
     const styles = useStyle();
     return (
         <>
@@ -31,14 +31,16 @@ const InputCard = ({ setOpen }) => {
                         inputProps={{ className: styles.input }}
                         multiline
                         fullWidth
+                        value={inpValue}
                         placeholder="Enter"
+                        onChange={(e) => setInpValue(e.currentTarget.value)}
                     />
                 </Paper>
             </div>
             <div className={styles.card}>
                 <Button
                     className={styles.btnConfirmed}
-                    onClick={() => setOpen(false)}
+                    onClick={() => onAddList(inpValue, list.id)}
                 >
                     Add Card
                 </Button>

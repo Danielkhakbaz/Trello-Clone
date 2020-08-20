@@ -18,14 +18,26 @@ const useStyle = makeStyles((theme) => ({
     },
 }));
 
-const CardContainer = () => {
+const CardContainer = ({
+    list,
+    onAddList,
+    open,
+    setOpen,
+    inpValue,
+    setInpValue,
+}) => {
     const styles = useStyle();
-    const [open, setOpen] = useState(false);
     return (
         <>
             <div className={styles.root}>
                 <Collapse in={open}>
-                    <InputCard setOpen={setOpen} />
+                    <InputCard
+                        list={list}
+                        setOpen={setOpen}
+                        onAddList={onAddList}
+                        inpValue={inpValue}
+                        setInpValue={setInpValue}
+                    />
                 </Collapse>
                 <Collapse in={!open}>
                     <Paper
